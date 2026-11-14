@@ -1,0 +1,14 @@
+{
+  "name": "one-little-drawing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Draw a creature, name it, and hear it sung back to you in a tiny handmade tree.",
+  "license": "MIT",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^33.0.0"
+  }
+}

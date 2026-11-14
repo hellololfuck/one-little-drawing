@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="A little green creature in a tree">
+  <rect width="64" height="64" rx="14" fill="#fdf8ec"/>
+  <path d="M13 54c9-3 30-3 39 0" fill="none" stroke="#8b5a2b" stroke-width="4" stroke-linecap="round"/>
+  <path d="M32 54V35" fill="none" stroke="#8b5a2b" stroke-width="5" stroke-linecap="round"/>
+  <path d="M31 38c-13 0-20-11-13-20 6-8 20-8 26 0 7 9 0 20-13 20z" fill="#8fd6b0" stroke="#2c2a26" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="26" cy="25" r="2.6" fill="#2c2a26"/>
+  <circle cx="38" cy="25" r="2.6" fill="#2c2a26"/>
+  <path d="M27 30q5 4 10 0" fill="none" stroke="#2c2a26" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="20" cy="31" r="2.2" fill="#ff8a76" opacity=".8"/>
+  <circle cx="44" cy="31" r="2.2" fill="#ff8a76" opacity=".8"/>
+  <path d="M50 16q2-4 4 0 4 2 0 4-2 4-4 0-4-2 0-4z" fill="#e35e4b"/>
+</svg>

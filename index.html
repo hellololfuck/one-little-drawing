@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fdf8ec">
+<title>One Little ___ Sitting in a Tree</title>
+<meta name="description" content="Draw a creature, give it a name, and hear it sung back to you in a tiny handmade tree.">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="One Little ___ Sitting in a Tree">
+<meta property="og:description" content="Draw a creature, name it, and hear it sung back to you in a tiny handmade tree.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<noscript><p class="noscript">This little sing-along needs JavaScript to draw and sing.</p></noscript>
+
+<div class="app">
+  <main class="stage" id="stage">
+
+    <!-- ---------------- HOME ---------------- -->
+    <section class="screen screen-home is-active" id="screenHome" aria-label="Start screen">
+      <div class="home-inner">
+        <p class="kicker">a tiny handmade sing-along</p>
+
+        <h1 class="home-title">
+          <span class="title-small">one little</span>
+          <span class="title-slot">
+            <canvas id="homeDoodle" width="720" height="440" aria-hidden="true"></canvas>
+            <span class="slot-hint" aria-hidden="true">your creature</span>
+          </span>
+          <span class="title-big">sitting in a tree</span>
+        </h1>
+
+        <div class="home-steps" aria-hidden="true">
+          <span class="step-pill"><b>1</b> draw it</span>
+          <span class="step-pill"><b>2</b> name it</span>
+          <span class="step-pill"><b>3</b> hear it sing</span>
+        </div>
+
+        <button class="big-btn home-btn" id="btnStartDraw" type="button">✏️ Draw your creature</button>
+        <p class="home-note">takes about a minute · sound on ♪</p>
+      </div>
+    </section>
+
+    <!-- ---------------- DRAW ---------------- -->
+    <section class="screen screen-draw" id="screenDraw" aria-label="Draw your creature">
+      <header class="head">
+        <button class="icon-btn" id="btnDrawBack" type="button" aria-label="Back to start">←</button>
+        <div class="head-text">
+          <h2>draw your creature</h2>
+          <p>blob, bug or beast — anything goes</p>
+        </div>
+      </header>
+
+      <div class="draw-card" id="drawCard">
+        <canvas id="drawCanvas" width="900" height="900" aria-label="Drawing area"></canvas>
+        <p class="draw-empty" id="drawEmpty" aria-hidden="true">scribble here</p>
+        <div class="brush-cursor" id="brushCursor" aria-hidden="true"></div>
+      </div>
+
+      <div class="tools">
+        <div class="swatches" id="swatches" role="group" aria-label="Brush colour"></div>
+        <div class="sizes" id="sizes" role="group" aria-label="Brush size"></div>
+      </div>
+
+      <div class="tools tools-second">
+        <button class="tool-btn" id="btnEraser" type="button" aria-pressed="false">eraser</button>
+        <button class="tool-btn" id="btnUndo" type="button">undo</button>
+        <button class="tool-btn" id="btnRedo" type="button">redo</button>
+        <button class="tool-btn tool-danger" id="btnClear" type="button">clear</button>
+      </div>
+
+      <button class="big-btn wide-btn" id="btnDoneDraw" type="button">done — name it →</button>
+    </section>
+
+    <!-- ---------------- DETAILS ---------------- -->
+    <section class="screen screen-details" id="screenDetails" aria-label="Name your creature">
+      <header class="head">
+        <button class="icon-btn" id="btnDetailsBack" type="button" aria-label="Back to drawing">←</button>
+        <div class="head-text">
+          <h2>who is this?</h2>
+          <p>they're about to be a star</p>
+        </div>
+      </header>
+
+      <div class="details-scroll">
+        <div class="preview-card">
+          <span class="tape tape-a" aria-hidden="true"></span>
+          <span class="tape tape-b" aria-hidden="true"></span>
+          <img id="artPreview" alt="Your creature drawing">
+        </div>
+
+        <label class="field">
+          <span>its name</span>
+          <input id="nameInput" type="text" maxlength="20" placeholder="Mochi" autocomplete="off" spellcheck="false">
+        </label>
+
+        <label class="field">
+          <span>what is it?</span>
+          <input id="typeInput" type="text" maxlength="24" placeholder="a tiny dragon" autocomplete="off" spellcheck="false">
+        </label>
+
+        <label class="field">
+          <span>singing voice</span>
+          <select id="voiceSelect"></select>
+        </label>
+
+        <p class="sing-line" id="singLine">“one little <b>Mochi</b> sitting in a tree”</p>
+        <p class="hint" id="formHint" role="status" aria-live="polite"></p>
+
+        <div class="details-actions">
+          <button class="small-btn" id="btnTestVoice" type="button">▶ test voice</button>
+          <button class="big-btn grow" id="btnStartShow" type="button">start the song ♪</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- SHOW ---------------- -->
+    <section class="screen screen-show" id="screenShow" aria-label="Sing-along">
+      <canvas id="showCanvas" width="720" height="1280"></canvas>
+
+      <div class="hud">
+        <button class="icon-btn hud-btn" id="btnMute" type="button" aria-label="Mute sound" aria-pressed="false">♪</button>
+        <button class="icon-btn hud-btn hud-skip" id="btnSkip" type="button" aria-label="Skip to the end">skip ▸</button>
+      </div>
+
+      <div class="lyric" id="lyric" aria-live="polite"></div>
+
+      <div class="end-card" id="endCard" aria-hidden="true">
+        <div class="end-inner">
+          <p class="end-kicker">that's the whole song</p>
+          <h2 class="end-title">the end</h2>
+          <p class="end-line"><strong id="endName">Mochi</strong> <span id="endType">the tiny dragon</span></p>
+
+          <div class="end-doodle" aria-hidden="true">
+            <span>♪</span><span>♥</span><span>✿</span>
+          </div>
+
+          <div class="end-actions">
+            <button class="big-btn" id="btnReplay" type="button">sing it again</button>
+            <button class="small-btn" id="btnSavePic" type="button">save picture</button>
+            <button class="small-btn" id="btnDrawAgain" type="button">draw a new one</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="sketch.js"></script>
+<script src="audio.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
